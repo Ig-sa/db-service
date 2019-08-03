@@ -23,8 +23,8 @@ pipeline {
 	
 		stage('Deploy') {
             steps {
-				sh 'rm /var/www/html/service.php'
-				sh 'rm /var/www/html/dbConnection.php'
+				sh 'sudo rm /var/www/html/service.php'
+				sh 'sudo rm /var/www/html/dbConnection.php'
 				
 				sh 'cp service.php /var/www/html'
 				sh 'cp dbConnection.php /var/www/html'
