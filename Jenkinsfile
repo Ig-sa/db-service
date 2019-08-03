@@ -23,8 +23,11 @@ pipeline {
 	
 		stage('Deploy') {
             steps {
-				sh 'yes | cp -rf service.php /var/www/html'
-				sh 'yes | cp -rf dbConnection.php /var/www/html'
+				sh 'rm /var/www/html/service.php'
+				sh 'rm /var/www/html/dbConnection.php'
+				
+				sh 'cp service.php /var/www/html'
+				sh 'cp dbConnection.php /var/www/html'
             }
         }
 	}
