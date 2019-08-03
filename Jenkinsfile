@@ -3,10 +3,9 @@ pipeline {
     
     stages {
 		stage('Test') {
+			def existsDBConnection = fileExists 'dbConnection.php'
+			def existsService = fileExists 'service.php'
 			steps {
-				def existsDBConnection = fileExists 'dbConnection.php'
-				def existsService = fileExists 'service.php'
-
 				if (!existsDBConnection) {
 					currentBuild.result = 'ABORTED'
 					error('File dbConnection.php does not exists.')
