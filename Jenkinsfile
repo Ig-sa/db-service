@@ -2,12 +2,24 @@ pipeline {
     agent { label 'PHPService' }
     
     stages {
+		stage('Test') {
+			def existsDBConnection = fileExists 'dbConnection.php'
+			def existsService = fileExists 'service.php'
 
-		stage('Copy new version') {
+			if (!existsDBConnection) {
+				currentBuild.result = 'ABORTED'
+				error('File dbConnection.php does not exists.')
+			}
+			
+			if (!existsService) {
+				currentBuild.result = 'ABORTED'
+				error('File service.php does not exists.')
+			}
+		}
+	
+		stage('Deploy') {
             steps {
-                sh 'ls  /var/www/html/'
-                sh 'ls  /home/jenkins-slave-01/workspace/db-service'
-				//  sh 'yes | cp -rf /home/jenkins-slave-01/db-service/* /var/www/html/'
+				sh 'yes | cp -rf /home/jenkins-slave-01/db-service/* /var/www/html/'
             }
         }
 	}
