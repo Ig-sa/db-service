@@ -23,7 +23,8 @@ pipeline {
 	
 		stage('Deploy') {
             steps {
-				sh 'yes | cp -rf /home/jenkins-slave-01/db-service/* /var/www/html/'
+				sh 'yes | cp -rf service.php /var/www/html'
+				sh 'yes | cp -rf dbConnection.php /var/www/html'
             }
         }
 	}
