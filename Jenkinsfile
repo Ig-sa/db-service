@@ -26,8 +26,8 @@ pipeline {
 				sh 'sudo rm /var/www/html/service.php'
 				sh 'sudo rm /var/www/html/dbConnection.php'
 				
-				sh 'cp service.php /var/www/html'
-				sh 'cp dbConnection.php /var/www/html'
+				sh 'sudo cp service.php /var/www/html'
+				sh 'sudo cp dbConnection.php /var/www/html'
             }
         }
 	}
